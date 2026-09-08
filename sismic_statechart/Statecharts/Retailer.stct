@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statechart:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:statechart="http://statechart/1.0" name="Retailer">
+  <nodes name="Retailer" label="0" type="OR">
+    <Children name="0.1" label="0.1" type="START"/>
+    <Children name="sendStock_Retailer" label="0.2" type="OR">
+      <Children name="0.2.1" label="0.2.1" type="START"/>
+      <Children name="registerItems" label="0.2.2" type="BASIC"/>
+      <Children name="sendReceipt" label="0.2.3" type="BASIC"/>
+      <Children name="0.2.4" label="0.2.4" type="END"/>
+    </Children>
+    <Children name="checkProducts_Retailer" label="0.3" type="OR">
+      <Children name="0.3.1" label="0.3.1" type="START"/>
+      <Children name="productsSent" label="0.3.2" type="BASIC"/>
+      <Children name="receiveProof" label="0.3.3" type="BASIC"/>
+      <Children name="0.3.4" label="0.3.4" type="END"/>
+    </Children>
+    <Children name="approveProducts_Retailer" label="0.4" type="OR">
+      <Children name="0.4.1" label="0.4.1" type="START"/>
+      <Children name="receiveFeedback" label="0.4.2" type="BASIC"/>
+      <Children name="0.4.3" label="0.4.3" type="END"/>
+    </Children>
+    <Children name="purchaseProducts_Retailer" label="0.5" type="OR">
+      <Children name="0.5.1" label="0.5.1" type="START"/>
+      <Children name="scanItem" label="0.5.2" type="BASIC"/>
+      <Children name="giveReceipt" label="0.5.3" type="BASIC"/>
+      <Children name="0.5.4" label="0.5.4" type="END"/>
+    </Children>
+    <Children name="0.6" label="0.6" type="END"/>
+    <Children name="retailerInitialization" type="BASIC"/>
+  </nodes>
+  <transitions TE="func_receiveProductFromDistributor(product)/stockReceived=false" name="0.1TOsendStock_Retailer" source="//@nodes.0/@Children.6" target="//@nodes.0/@Children.1"/>
+  <transitions TE="/stockRegistered=true" name="sendStock_RetailerTOcheckProducts_Retailer" source="//@nodes.0/@Children.1" target="//@nodes.0/@Children.2"/>
+  <transitions TE="/func_sendProductToRegulator(product)" name="checkProducts_RetailerTOapproveProducts_Retailer" source="//@nodes.0/@Children.2" target="//@nodes.0/@Children.3"/>
+  <transitions TE="func_receiveProductFromRegulator(product)/evaluateStock=true" name="approveProducts_RetailerTOpurchaseProducts_Retailer" source="//@nodes.0/@Children.3" target="//@nodes.0/@Children.4"/>
+  <transitions TE="/func_sendProductToCustomer(product)" name="purchaseProducts_RetailerTO0.6" source="//@nodes.0/@Children.4" target="//@nodes.0/@Children.5"/>
+  <transitions name="0.2.1TOregisterItems" source="//@nodes.0/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.1"/>
+  <transitions TE="[func_addStock(product)]/stockReceived=true" name="registerItemsTOsendReceipt" source="//@nodes.0/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.2"/>
+  <transitions TE="/stockRegistered=false" name="sendReceiptTO0.2.4" source="//@nodes.0/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.3"/>
+  <transitions TE="/stockSent=false" name="0.3.1TOproductsSent" source="//@nodes.0/@Children.2/@Children.0" target="//@nodes.0/@Children.2/@Children.1"/>
+  <transitions TE="[func_removeStock(product)]/stockSent=true" name="productsSentTOreceiveProof" source="//@nodes.0/@Children.2/@Children.1" target="//@nodes.0/@Children.2/@Children.2"/>
+  <transitions TE="/evaluateStock=false" name="receiveProofTO0.3.4" source="//@nodes.0/@Children.2/@Children.2" target="//@nodes.0/@Children.2/@Children.3"/>
+  <transitions name="0.4.1TOreceiveFeedback" source="//@nodes.0/@Children.3/@Children.0" target="//@nodes.0/@Children.3/@Children.1"/>
+  <transitions TE="[evaluateStock]" name="receiveFeedbackTOreceiveFeedback" source="//@nodes.0/@Children.3/@Children.1" target="//@nodes.0/@Children.3/@Children.1"/>
+  <transitions name="receiveFeedbackTO0.4.3" source="//@nodes.0/@Children.3/@Children.1" target="//@nodes.0/@Children.3/@Children.2"/>
+  <transitions TE="" name="0.5.1TOscanItem" source="//@nodes.0/@Children.4/@Children.0" target="//@nodes.0/@Children.4/@Children.1"/>
+  <transitions TE="[func_removeFromStock(product)]" name="scanItemTOsendReceipt" source="//@nodes.0/@Children.4/@Children.1" target="//@nodes.0/@Children.4/@Children.2"/>
+  <transitions TE="/func_updateCashier(product)" name="sendReceiptTO0.5.4" source="//@nodes.0/@Children.4/@Children.2" target="//@nodes.0/@Children.4/@Children.3"/>
+  <transitions source="//@nodes.0/@Children.0" target="//@nodes.0/@Children.6"/>
+</statechart:Model>

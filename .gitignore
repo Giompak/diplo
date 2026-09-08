@@ -1,0 +1,42 @@
+# LibreOffice temporary/lock files
+.~lock.*
+*.~lock.*
+
+# Windows metadata
+*Zone.Identifier
+
+# Archives
+*.zip
+
+# Executables
+*.AppImage
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# Environment/secrets
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Generated files
+outputs/
+checkpoints/

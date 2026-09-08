@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statechart:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:statechart="http://statechart/1.0" name="Farmer">
+  <nodes name="Farmer" label="0" type="OR">
+    <Children name="0.1" label="0.1" type="START"/>
+    <Children name="checkCrop_Farmer" label="0.2" type="OR">
+      <Children name="0.2.1" label="0.2.1" type="START"/>
+      <Children name="cropSent" label="0.2.2" type="BASIC"/>
+      <Children name="receiveProof" label="0.2.3" type="BASIC"/>
+      <Children name="0.2.4" label="0.2.4" type="END"/>
+    </Children>
+    <Children name="approveCrop_Farmer" label="0.3" type="OR">
+      <Children name="0.3.1" label="0.3.1" type="START"/>
+      <Children name="receiveFeedback" label="0.3.2" type="BASIC"/>
+      <Children name="0.3.3" label="0.3.3" type="END"/>
+    </Children>
+    <Children name="sendCrop_Farmer" label="0.4" type="OR">
+      <Children name="0.4.1" label="0.4.1" type="START"/>
+      <Children name="receiveReceipt" label="0.4.2" type="BASIC"/>
+      <Children name="0.4.4" label="0.4.4" type="END"/>
+      <Children name="emailConfirmation" type="BASIC"/>
+    </Children>
+    <Children name="0.5" label="0.5" type="END"/>
+    <Children name="farmerInitialization" type="BASIC"/>
+  </nodes>
+  <transitions TE="/evaluateCrop=false" name="checkCrop_FarmerTOapproveCrop_Farmer" source="//@nodes.0/@Children.1" target="//@nodes.0/@Children.2"/>
+  <transitions TE="func_receiveProductFromRegulator(product)[feedbackReceived]" name="approveCrop_FarmerTOsendCrop_Farmer" source="//@nodes.0/@Children.2" target="//@nodes.0/@Children.3"/>
+  <transitions name="0.2.1TOcropSent" source="//@nodes.0/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.1"/>
+  <transitions TE="[cropHarvested]/func_sendProductToRegulator(product)" name="cropSentTOreceiveProof" source="//@nodes.0/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.2"/>
+  <transitions name="receiveProofTO0.2.4" source="//@nodes.0/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.3"/>
+  <transitions TE="/evaluateCrop=true" name="0.3.1TOreceiveFeedback" source="//@nodes.0/@Children.2/@Children.0" target="//@nodes.0/@Children.2/@Children.1"/>
+  <transitions TE="/feedbackReceived=true" name="receiveFeedbackTO0.3.3" source="//@nodes.0/@Children.2/@Children.1" target="//@nodes.0/@Children.2/@Children.2"/>
+  <transitions name="0.4.1TOreceiveReceipt" source="//@nodes.0/@Children.3/@Children.0" target="//@nodes.0/@Children.3/@Children.1"/>
+  <transitions source="//@nodes.0/@Children.3" target="//@nodes.0/@Children.4"/>
+  <transitions TE="" source="//@nodes.0/@Children.0" target="//@nodes.0/@Children.5"/>
+  <transitions TE="/func_sendProductToProcessor(product)" source="//@nodes.0/@Children.3/@Children.3" target="//@nodes.0/@Children.3/@Children.2"/>
+  <transitions TE="/receiptReceived=true" source="//@nodes.0/@Children.3/@Children.1" target="//@nodes.0/@Children.3/@Children.3"/>
+  <transitions TE="/cropHarvested=true" source="//@nodes.0/@Children.5" target="//@nodes.0/@Children.1"/>
+</statechart:Model>

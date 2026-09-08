@@ -1,0 +1,13 @@
+behave==1.2.6
+future-fstrings==1.2.0
+lxml==5.3.0
+ordered-set==4.1.0
+parse==1.20.2
+parse-type==0.6.4
+pyecore==0.15.2
+RestrictedPython==7.4
+ruamel.yaml==0.18.6
+ruamel.yaml.clib==0.2.8
+schema==0.7.7
+sismic==1.6.6
+six==1.17.0

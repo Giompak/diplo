@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statechart:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:statechart="http://statechart/1.0" name="Processor">
+  <nodes name="Processor" label="0" type="OR">
+    <Children name="0.1" label="0.1" type="START"/>
+    <Children name="sendCrop_Processor" label="0.2" type="OR">
+      <Children name="0.2.1" label="0.2.1" type="START"/>
+      <Children name="registerItems" label="0.2.2" type="BASIC"/>
+      <Children name="sendReceipt" label="0.2.3" type="BASIC"/>
+      <Children name="0.2.4" label="0.2.4" type="END"/>
+    </Children>
+    <Children name="checkGoods_Processor" label="0.3" type="OR">
+      <Children name="0.3.1" label="0.3.1" type="START"/>
+      <Children name="goodsSent" label="0.3.2" type="BASIC"/>
+      <Children name="receiveProof" label="0.3.3" type="BASIC"/>
+      <Children name="0.3.4" label="0.3.4" type="END"/>
+    </Children>
+    <Children name="approveGoods_Processor" label="0.4" type="OR">
+      <Children name="0.4.1" label="0.4.1" type="START"/>
+      <Children name="receiveFeedback" label="0.4.2" type="BASIC"/>
+      <Children name="0.4.3" label="0.4.3" type="END"/>
+    </Children>
+    <Children name="sendSupply_Processor" label="0.5" type="OR">
+      <Children name="0.5.1" label="0.5.1" type="START"/>
+      <Children name="receiveReceipt" label="0.5.2" type="BASIC"/>
+      <Children name="0.5.4" label="0.5.4" type="END"/>
+      <Children name="emailConfirmation" type="BASIC"/>
+    </Children>
+    <Children name="0.6" label="0.6" type="END"/>
+    <Children name="processorInitialization" type="BASIC"/>
+  </nodes>
+  <transitions TE="func_receiveProductFromFarmer(product)/cropReceived=false" name="0.1TOsendCrop_Processor" source="//@nodes.0/@Children.6" target="//@nodes.0/@Children.1"/>
+  <transitions TE="/processCrop=true" name="sendCrop_ProcessorTOcheckGoods_Processor" source="//@nodes.0/@Children.1" target="//@nodes.0/@Children.2"/>
+  <transitions TE="/func_sendProductToRegulator(product)" name="checkGoods_ProcessorTOapproveGoods_Processor" source="//@nodes.0/@Children.2" target="//@nodes.0/@Children.3"/>
+  <transitions TE="func_receiveProductFromRegulator(product)/evaluateProcessedCrop=true" name="approveGoods_ProcessorTOsendSupply_Processor" source="//@nodes.0/@Children.3" target="//@nodes.0/@Children.4"/>
+  <transitions name="sendSupply_ProcessorTO0.6" source="//@nodes.0/@Children.4" target="//@nodes.0/@Children.5"/>
+  <transitions TE="/cropReceived=true" name="0.2.1TOregisterItems" source="//@nodes.0/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.1"/>
+  <transitions TE="[func_addStock(product)]/processCrop=false" name="registerItemsTOsendReceipt" source="//@nodes.0/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.2"/>
+  <transitions name="sendReceiptTO0.2.4" source="//@nodes.0/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.3"/>
+  <transitions name="0.3.1TOgoodsSent" source="//@nodes.0/@Children.2/@Children.0" target="//@nodes.0/@Children.2/@Children.1"/>
+  <transitions TE="[func_removeStock(product)]/feedbackReceived=false" name="goodsSentTOreceiveProof" source="//@nodes.0/@Children.2/@Children.1" target="//@nodes.0/@Children.2/@Children.2"/>
+  <transitions TE="/evaluateProcessedCrop=false" name="receiveProofTO0.3.4" source="//@nodes.0/@Children.2/@Children.2" target="//@nodes.0/@Children.2/@Children.3"/>
+  <transitions name="0.4.1TOreceiveFeedback" source="//@nodes.0/@Children.3/@Children.0" target="//@nodes.0/@Children.3/@Children.1"/>
+  <transitions TE="[evaluateProcessedCrop]" name="receiveFeedbackTOreceiveFeedback" source="//@nodes.0/@Children.3/@Children.1" target="//@nodes.0/@Children.3/@Children.1"/>
+  <transitions name="receiveFeedbackTO0.4.3" source="//@nodes.0/@Children.3/@Children.1" target="//@nodes.0/@Children.3/@Children.2"/>
+  <transitions name="0.5.1TOreceiveReceipt" source="//@nodes.0/@Children.4/@Children.0" target="//@nodes.0/@Children.4/@Children.1"/>
+  <transitions TE="/func_sendProductToDistributor(product)" name="_open_option_emailConfirmation_close_option_TO0.5.4" source="//@nodes.0/@Children.4/@Children.3" target="//@nodes.0/@Children.4/@Children.2"/>
+  <transitions TE="/feedbackReceived=true" source="//@nodes.0/@Children.4/@Children.1" target="//@nodes.0/@Children.4/@Children.3"/>
+  <transitions source="//@nodes.0/@Children.0" target="//@nodes.0/@Children.6"/>
+</statechart:Model>

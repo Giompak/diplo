@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statechart:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:statechart="http://statechart/1.0" name="Customer">
+  <nodes name="Customer" label="0" type="OR">
+    <Children name="0.1" label="0.1" type="START"/>
+    <Children name="purchaseProducts_Customer" label="0.2" type="OR">
+      <Children name="0.2.1" label="0.2.1" type="START"/>
+      <Children name="addItemToCart" label="0.2.2" type="BASIC"/>
+      <Children name="payForItem" label="0.2.3" type="BASIC"/>
+      <Children name="receiveReceipt" label="0.2.4" type="BASIC"/>
+      <Children name="0.2.5" label="0.2.5" type="END"/>
+    </Children>
+    <Children name="0.3" label="0.3" type="END"/>
+    <Children name="customerInitialization" type="BASIC"/>
+  </nodes>
+  <transitions TE="[func_scanCard()]/enoughAmount=true" name="addItemToCartTOpayItems" source="//@nodes.0/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.2"/>
+  <transitions TE="/func_updateAmount(product)" name="payItemsTOreceiveReceipt" source="//@nodes.0/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.3"/>
+  <transitions TE="/paymentComplete=true" name="receiveReceiptTO0.2.5" source="//@nodes.0/@Children.1/@Children.3" target="//@nodes.0/@Children.1/@Children.4"/>
+  <transitions name="purchaseProducts_CustomerTO0.3" source="//@nodes.0/@Children.1" target="//@nodes.0/@Children.2"/>
+  <transitions TE="/enoughAmount=false" source="//@nodes.0/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.1"/>
+  <transitions TE="func_receiveProductFromRetailer(product)/paymentComplete=false" source="//@nodes.0/@Children.3" target="//@nodes.0/@Children.1"/>
+  <transitions source="//@nodes.0/@Children.0" target="//@nodes.0/@Children.3"/>
+</statechart:Model>

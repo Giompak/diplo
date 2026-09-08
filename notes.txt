@@ -1,0 +1,67 @@
+- For Virtual Environement - 
+    python3 -m venv sismic_blockchain
+
+    Windows: .\sismic_blockchain\Scripts\Activate
+    Linux: source sismic_blockchain/bin/activate
+
+    pip install -r requirements.txt
+
+    deactivate
+
+
+- For Ganache installation - 
+    Install Ganache: If you haven't already, download and install Ganache from the Truffle Suite website.
+
+    Open Ganache: Run the Ganache application after installing it. On the first launch, you might be prompted with setup options. - Run ./GanacheUbuntu.AppImage
+
+    Create or Open a Workspace:
+    To start quickly, you can click "Quickstart" which uses default settings.
+    Alternatively, you can create a new workspace for more customized settings. Click on "New Workspace", give it a name, and optionally configure your accounts, chain, server, and other settings as needed. After configuring, click "Save Workspace".
+    Running Ganache: Once you've chosen "Quickstart" or opened a workspace, Ganache will initiate your personal blockchain. The main screen will display blockchain details such as the RPC server address (usually HTTP://127.0.0.1:7545 for the GUI version), accounts, balances, transactions, and more.
+
+
+- Truffle -
+    mkdir MyDApp && cd MyDApp
+    truffle init
+    Configure truffle-config.js
+    Create a .sol file under contracts
+    Create a migrations.js into migrations folder
+
+ - Prerequisites
+    Install Node.js: Ensure Node.js is installed on your computer.
+    Install Truffle: Install Truffle globally using npm by running npm install -g truffle in your terminal.
+    Ganache: Have Ganache running, either the GUI version or the CLI (ganache-cli). 
+        Note the RPC server address (e.g., HTTP://127.0.0.1:7545 for the GUI or HTTP://127.0.0.1:8545 for the CLI).
+
+
+- Truffle - 
+    mkdir MyDApp && cd MyDApp
+    Run: truffle init
+    Create the smart contract under contracts
+    Create the migrations.js under migrations
+    Run: truffle compile
+    Run: truffle migrate --network development
+    Rub: truffle exec ./scripts/runSupplyChain.js
+
+
+- Node version -
+    Install nvm: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+    Run: nvm install (node version - Higher than 15)
+    Run: nvm use (version)
+
+
+----------------------------------------------
+1st screen:
+cd /Desktop/Diplomatiki
+./GanacheUbuntu.AppImage
+
+2nd screen:
+cd /Desktop/Diplomatiki
+source sismic_blockchain/bin/activate
+cd sismic_statechart
+python3 amola_blockchain_generator.py
+cd ..
+cd blockchain_agriculture_system
+    Run: truffle compile
+    Run: truffle migrate --network development
+    Rub: truffle exec ./scripts/runSupplyChain.js

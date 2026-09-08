@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<statechart:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:statechart="http://statechart/1.0" name="Regulator">
+  <nodes name="Regulator" label="0" type="OR">
+    <Children name="0.1" label="0.1" type="START"/>
+    <Children name="_open_group_checkCrop_Regulator_sequence_approveCrop_Regulator_close_group__parallel__open_group_checkGoods_Regulator_sequence_approveGoods_Regulator_close_group__parallel__open_group_checkSupply_Regulator_sequence_approveSupply_Regulator_close_group__parallel__open_group_checkProducts_Regulator_sequence_approveProducts_Regulator_close_group_" label="0.2" type="AND">
+      <Children name="0.2.1" label="0.2.1" type="OR">
+        <Children name="0.2.1.1" label="0.2.1.1" type="START"/>
+        <Children name="_open_group_checkCrop_Regulator_sequence_approveCrop_Regulator_close_group_" label="0.2.1.2" type="OR">
+          <Children name="0.2.1.2.1" label="0.2.1.2.1" type="START"/>
+          <Children name="checkCrop_Regulator" label="0.2.1.2.2" type="OR">
+            <Children name="0.2.1.2.2.1" label="0.2.1.2.2.1" type="START"/>
+            <Children name="cropReceived" label="0.2.1.2.2.2" type="BASIC"/>
+            <Children name="sendProofFarmer" label="0.2.1.2.2.3" type="BASIC"/>
+            <Children name="0.2.1.2.2.4" label="0.2.1.2.2.4" type="END"/>
+          </Children>
+          <Children name="approveCrop_Regulator" label="0.2.1.2.3" type="OR">
+            <Children name="0.2.1.2.3.1" label="0.2.1.2.3.1" type="START"/>
+            <Children name="processCrop" label="0.2.1.2.3.2" type="BASIC"/>
+            <Children name="sendNotesFarmer" label="0.2.1.2.3.3" type="BASIC"/>
+            <Children name="sendFeedbackFarmer" label="0.2.1.2.3.4" type="BASIC"/>
+            <Children name="0.2.1.2.3.5" label="0.2.1.2.3.5" type="END"/>
+          </Children>
+          <Children name="0.2.1.2.4" label="0.2.1.2.4" type="END"/>
+        </Children>
+        <Children name="0.2.1.3" label="0.2.1.3" type="END"/>
+        <Children name="checkFarmer" type="BASIC"/>
+      </Children>
+      <Children name="0.2.2" label="0.2.2" type="OR">
+        <Children name="0.2.2.1" label="0.2.2.1" type="START"/>
+        <Children name="_open_group_checkGoods_Regulator_sequence_approveGoods_Regulator_close_group_" label="0.2.2.2" type="OR">
+          <Children name="0.2.2.2.1" label="0.2.2.2.1" type="START"/>
+          <Children name="checkGoods_Regulator" label="0.2.2.2.2" type="OR">
+            <Children name="0.2.2.2.2.1" label="0.2.2.2.2.1" type="START"/>
+            <Children name="goodsReceived" label="0.2.2.2.2.2" type="BASIC"/>
+            <Children name="sendProofProcessor" label="0.2.2.2.2.3" type="BASIC"/>
+            <Children name="0.2.2.2.2.4" label="0.2.2.2.2.4" type="END"/>
+          </Children>
+          <Children name="approveGoods_Regulator" label="0.2.2.2.3" type="OR">
+            <Children name="0.2.2.2.3.1" label="0.2.2.2.3.1" type="START"/>
+            <Children name="processGoods" label="0.2.2.2.3.2" type="BASIC"/>
+            <Children name="registerNotesProcessor" label="0.2.2.2.3.3" type="BASIC"/>
+            <Children name="sendFeedbackProcessor" label="0.2.2.2.3.4" type="BASIC"/>
+            <Children name="0.2.2.2.3.5" label="0.2.2.2.3.5" type="END"/>
+          </Children>
+          <Children name="0.2.2.2.4" label="0.2.2.2.4" type="END"/>
+        </Children>
+        <Children name="0.2.2.3" label="0.2.2.3" type="END"/>
+        <Children name="checkProcessor" type="BASIC"/>
+      </Children>
+      <Children name="0.2.3" label="0.2.3" type="OR">
+        <Children name="0.2.3.1" label="0.2.3.1" type="START"/>
+        <Children name="_open_group_checkSupply_Regulator_sequence_approveSupply_Regulator_close_group_" label="0.2.3.2" type="OR">
+          <Children name="0.2.3.2.1" label="0.2.3.2.1" type="START"/>
+          <Children name="checkSupply_Regulator" label="0.2.3.2.2" type="OR">
+            <Children name="0.2.3.2.2.1" label="0.2.3.2.2.1" type="START"/>
+            <Children name="supplyReceived" label="0.2.3.2.2.2" type="BASIC"/>
+            <Children name="sendProofDistributor" label="0.2.3.2.2.3" type="BASIC"/>
+            <Children name="0.2.3.2.2.4" label="0.2.3.2.2.4" type="END"/>
+          </Children>
+          <Children name="approveSupply_Regulator" label="0.2.3.2.3" type="OR">
+            <Children name="0.2.3.2.3.1" label="0.2.3.2.3.1" type="START"/>
+            <Children name="processSupply" label="0.2.3.2.3.2" type="BASIC"/>
+            <Children name="registerNotesDistributor" label="0.2.3.2.3.3" type="BASIC"/>
+            <Children name="sendFeedbackDistributor" label="0.2.3.2.3.4" type="BASIC"/>
+            <Children name="0.2.3.2.3.5" label="0.2.3.2.3.5" type="END"/>
+          </Children>
+          <Children name="0.2.3.2.4" label="0.2.3.2.4" type="END"/>
+        </Children>
+        <Children name="0.2.3.3" label="0.2.3.3" type="END"/>
+        <Children name="checkDistributor" type="BASIC"/>
+      </Children>
+      <Children name="0.2.4" label="0.2.4" type="OR">
+        <Children name="0.2.4.1" label="0.2.4.1" type="START"/>
+        <Children name="_open_group_checkProducts_Regulator_sequence_approveProducts_Regulator_close_group_" label="0.2.4.2" type="OR">
+          <Children name="0.2.4.2.1" label="0.2.4.2.1" type="START"/>
+          <Children name="checkProducts_Regulator" label="0.2.4.2.2" type="OR">
+            <Children name="0.2.4.2.2.1" label="0.2.4.2.2.1" type="START"/>
+            <Children name="productsReceived" label="0.2.4.2.2.2" type="BASIC"/>
+            <Children name="sendProofRetailer" label="0.2.4.2.2.3" type="BASIC"/>
+            <Children name="0.2.4.2.2.4" label="0.2.4.2.2.4" type="END"/>
+          </Children>
+          <Children name="approveProducts_Regulator" label="0.2.4.2.3" type="OR">
+            <Children name="0.2.4.2.3.1" label="0.2.4.2.3.1" type="START"/>
+            <Children name="processStock" label="0.2.4.2.3.2" type="BASIC"/>
+            <Children name="registerNotesRetailer" label="0.2.4.2.3.3" type="BASIC"/>
+            <Children name="sendFeedbackRetailer" label="0.2.4.2.3.4" type="BASIC"/>
+            <Children name="0.2.4.2.3.5" label="0.2.4.2.3.5" type="END"/>
+          </Children>
+          <Children name="0.2.4.2.4" label="0.2.4.2.4" type="END"/>
+        </Children>
+        <Children name="0.2.4.3" label="0.2.4.3" type="END"/>
+        <Children name="checkRetailer" type="BASIC"/>
+      </Children>
+    </Children>
+    <Children name="0.3" label="0.3" type="END"/>
+  </nodes>
+  <transitions name="0.1TO_open_group_checkCrop_Regulator_sequence_approveCrop_Regulator_close_group__parallel__open_group_checkGoods_Regulator_sequence_approveGoods_Regulator_close_group__parallel__open_group_checkSupply_Regulator_sequence_approveSupply_Regulator_close_group__parallel__open_group_checkProducts_Regulator_sequence_approveProducts_Regulator_close_group_" source="//@nodes.0/@Children.0" target="//@nodes.0/@Children.1"/>
+  <transitions name="_open_group_checkCrop_Regulator_sequence_approveCrop_Regulator_close_group__parallel__open_group_checkGoods_Regulator_sequence_approveGoods_Regulator_close_group__parallel__open_group_checkSupply_Regulator_sequence_approveSupply_Regulator_close_group__parallel__open_group_checkProducts_Regulator_sequence_approveProducts_Regulator_close_group_TO0.3" source="//@nodes.0/@Children.1" target="//@nodes.0/@Children.2"/>
+  <transitions TE="func_receiveProductFromFarmer(product)/productReceived=false" name="0.2.1.1TO_open_group_checkCrop_Regulator_sequence_approveCrop_Regulator_close_group_" source="//@nodes.0/@Children.1/@Children.0/@Children.3" target="//@nodes.0/@Children.1/@Children.0/@Children.1"/>
+  <transitions name="_open_group_checkCrop_Regulator_sequence_approveCrop_Regulator_close_group_TO0.2.1.3" source="//@nodes.0/@Children.1/@Children.0/@Children.1" target="//@nodes.0/@Children.1/@Children.0/@Children.2"/>
+  <transitions TE="func_receiveProductFromProcessor(product)/productReceived=false" name="0.2.2.1TO_open_group_checkGoods_Regulator_sequence_approveGoods_Regulator_close_group_" source="//@nodes.0/@Children.1/@Children.1/@Children.3" target="//@nodes.0/@Children.1/@Children.1/@Children.1"/>
+  <transitions name="_open_group_checkGoods_Regulator_sequence_approveGoods_Regulator_close_group_TO0.2.2.3" source="//@nodes.0/@Children.1/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.1/@Children.2"/>
+  <transitions TE="func_receiveProductFromDistributor(product)/productReceived=false" name="0.2.3.1TO_open_group_checkSupply_Regulator_sequence_approveSupply_Regulator_close_group_" source="//@nodes.0/@Children.1/@Children.2/@Children.3" target="//@nodes.0/@Children.1/@Children.2/@Children.1"/>
+  <transitions name="_open_group_checkSupply_Regulator_sequence_approveSupply_Regulator_close_group_TO0.2.3.3" source="//@nodes.0/@Children.1/@Children.2/@Children.1" target="//@nodes.0/@Children.1/@Children.2/@Children.2"/>
+  <transitions TE="func_receiveProductFromRetailer(product)/productReceived=false" name="0.2.4.1TO_open_group_checkProducts_Regulator_sequence_approveProducts_Regulator_close_group_" source="//@nodes.0/@Children.1/@Children.3/@Children.3" target="//@nodes.0/@Children.1/@Children.3/@Children.1"/>
+  <transitions name="_open_group_checkProducts_Regulator_sequence_approveProducts_Regulator_close_group_TO0.2.4.3" source="//@nodes.0/@Children.1/@Children.3/@Children.1" target="//@nodes.0/@Children.1/@Children.3/@Children.2"/>
+  <transitions name="0.2.1.2.1TOcheckCrop_Regulator" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1"/>
+  <transitions TE="func_processCrop(product)/productChecked=false" name="checkCrop_RegulatorTOapproveCrop_Regulator" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2"/>
+  <transitions name="approveCrop_RegulatorTO0.2.1.2.4" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.3"/>
+  <transitions TE="/proofSent=false" name="0.2.1.2.2.1TOcropReceived" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1/@Children.1"/>
+  <transitions TE="/productReceived=true" name="cropReceivedTOsendProof" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1/@Children.2"/>
+  <transitions TE="/proofSent=true" name="sendProofTO0.2.1.2.2.4" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.1/@Children.3"/>
+  <transitions TE="/feedbackSent=false" name="0.2.1.2.3.1TOprocessCrop" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.0" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.1"/>
+  <transitions TE="[func_evaluateCrop(product)]/productChecked=true" name="processCropTOsendNotes" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.1" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.2"/>
+  <transitions TE="/feedbackSent=true" name="sendNotesTOsendFeedback" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.2" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.3"/>
+  <transitions TE="/func_sendProductToFarmer(product)" name="sendFeedbackTO0.2.1.2.3.5" source="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.3" target="//@nodes.0/@Children.1/@Children.0/@Children.1/@Children.2/@Children.4"/>
+  <transitions name="0.2.2.2.1TOcheckGoods_Regulator" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1"/>
+  <transitions TE="func_processGoods(product)/productChecked=false" name="checkGoods_RegulatorTOapproveGoods_Regulator" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2"/>
+  <transitions name="approveGoods_RegulatorTO0.2.2.2.4" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.3"/>
+  <transitions TE="/proofSent=false" name="0.2.2.2.2.1TOgoodsReceived" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1/@Children.1"/>
+  <transitions TE="/productReceived=true" name="goodsReceivedTOsendProof" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1/@Children.2"/>
+  <transitions TE="/proofSent=true" name="sendProofTO0.2.2.2.2.4" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.1/@Children.3"/>
+  <transitions TE="/feedbackSent=false" name="0.2.2.2.3.1TOprocessGoods" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.0" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.1"/>
+  <transitions TE="[func_evaluateGoods(product)]/productChecked=true" name="processGoodsTOregisterNotes" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.1" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.2"/>
+  <transitions TE="/feedbackSent=true" name="registerNotesTOsendFeedback" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.2" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.3"/>
+  <transitions TE="/func_sendProductToProcessor(product)" name="sendFeedbackTO0.2.2.2.3.5" source="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.3" target="//@nodes.0/@Children.1/@Children.1/@Children.1/@Children.2/@Children.4"/>
+  <transitions name="0.2.3.2.1TOcheckSupply_Regulator" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1"/>
+  <transitions TE="func_processSupply(product)/productChecked=false" name="checkSupply_RegulatorTOapproveSupply_Regulator" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2"/>
+  <transitions name="approveSupply_RegulatorTO0.2.3.2.4" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.3"/>
+  <transitions TE="/proofSent=false" name="0.2.3.2.2.1TOsupplyReceived" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1/@Children.1"/>
+  <transitions TE="/productReceived=true" name="supplyReceivedTOsendProof" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1/@Children.2"/>
+  <transitions TE="/proofSent=true" name="sendProofTO0.2.3.2.2.4" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.1/@Children.3"/>
+  <transitions TE="/feedbackSent=false" name="0.2.3.2.3.1TOprocessSupply" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.0" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.1"/>
+  <transitions TE="/func_sendProductToDistributor(product)" name="sendFeedbackTO0.2.3.2.3.5" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.3" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.4"/>
+  <transitions name="0.2.4.2.1TOcheckProducts_Regulator" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1"/>
+  <transitions TE="func_processStock(product)/productChecked=false" name="checkProducts_RegulatorTOapproveProducts_Regulator" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2"/>
+  <transitions name="approveProducts_RegulatorTO0.2.4.2.4" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.3"/>
+  <transitions TE="/proofSent=false" name="0.2.4.2.2.1TOproductsReceived" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1/@Children.1"/>
+  <transitions TE="/productReceived=true" name="productsReceivedTOsendProof" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1/@Children.1" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1/@Children.2"/>
+  <transitions TE="/proofSent=true" name="sendProofTO0.2.4.2.2.4" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1/@Children.2" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.1/@Children.3"/>
+  <transitions TE="/feedbackSent=false" name="0.2.4.2.3.1TOprocessProducts" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.0" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.1"/>
+  <transitions TE="[func_evaluateStock(product)]/productChecked=true" name="processProductsTOregisterNotes" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.1" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.2"/>
+  <transitions TE="/feedbackSent=true" name="registerNotesTOsendFeedback" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.2" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.3"/>
+  <transitions TE="/func_sendProductToRetailer(product)" name="sendFeedbackTO0.2.4.2.3.5" source="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.3" target="//@nodes.0/@Children.1/@Children.3/@Children.1/@Children.2/@Children.4"/>
+  <transitions TE="[func_evaluateSupply(product)]/productChecked=true" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.1" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.2"/>
+  <transitions TE="/feedbackSent=true" source="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.2" target="//@nodes.0/@Children.1/@Children.2/@Children.1/@Children.2/@Children.3"/>
+  <transitions source="//@nodes.0/@Children.1/@Children.0/@Children.0" target="//@nodes.0/@Children.1/@Children.0/@Children.3"/>
+  <transitions source="//@nodes.0/@Children.1/@Children.1/@Children.0" target="//@nodes.0/@Children.1/@Children.1/@Children.3"/>
+  <transitions source="//@nodes.0/@Children.1/@Children.2/@Children.0" target="//@nodes.0/@Children.1/@Children.2/@Children.3"/>
+  <transitions source="//@nodes.0/@Children.1/@Children.3/@Children.0" target="//@nodes.0/@Children.1/@Children.3/@Children.3"/>
+</statechart:Model>
